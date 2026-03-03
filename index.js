@@ -68,7 +68,7 @@ async function initMod() {
                 trainWidth: 2.4,
                 minStationLength: 60,
                 maxStationLength: 100,
-                baseTrackCost: 60_000,
+                baseTrackCost: 35_000,
                 baseStationCost: 8_000_000,
                 trainOperationalCostPerHour: 210,
                 carOperationalCostPerHour: 30,
