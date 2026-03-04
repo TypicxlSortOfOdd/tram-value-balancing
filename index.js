@@ -11,7 +11,7 @@ function waitForAPI() {
 async function initMod() {
     try {
         const API = await waitForAPI();
-        console.log("Subway Builder API is ready:", API);
+        console.log("Subway Builder API is ready:", API.version);
         // You can now use the API to interact with the game
 
         //add S-Bahn and Tram, and Tram train trains. Tram train is a tram interopable with Light Metro and S-Bahn lines. It can run on both types of tracks and can be used for both types of services.
@@ -37,7 +37,13 @@ async function initMod() {
                 baseStationCost: 60_000_000,
                 trainOperationalCostPerHour: 750,
                 carOperationalCostPerHour: 70,
-                scissorsCrossoverCost: 15_000_000
+                scissorsCrossoverCost: 15_000_000,
+                stopTimeSeconds: 28,
+                maxLateralAcceleration: 1.2,
+                parallelTrackSpacing: 3.8,
+                trackClearance: 2,
+                minTurnRadius: 22,
+                minStationTurnRadius: 30,
             },
             compatibleTrackTypes: ['S-Bahn', 'Tram-Train'],
             allowAtGradeRoadCrossing: true,
@@ -56,23 +62,30 @@ async function initMod() {
             description: 'can cross streets, but is awfully slow. Modeled after Flexity Berlin.',
             stats: {
                 maxAcceleration: 0.8,
-                maxDeceleration: 1.1,
-                maxSpeed: 16.8, //60kmh
-                maxSpeedLocalStation: 11,
+                maxDeceleration: 1.0,
+                maxSpeed: 15.5, //~60kmh
+                maxSpeedLocalStation: 12,
                 capacityPerCar: 50,
-                carLength: 5.5,
-                minCars: 5,
-                maxCars: 10,
-                carsPerCarSet: 5,
-                carCost: 1_000_000,
-                trainWidth: 2.4,
+                carLength: 5,
+                minCars: 4,
+                maxCars: 8,
+                carsPerCarSet: 2,
+                carCost: 800_000,
+                trainWidth: 2.1,
                 minStationLength: 60,
                 maxStationLength: 100,
-                baseTrackCost: 65_000,
-                baseStationCost: 15_000_000,
-                trainOperationalCostPerHour: 260,
-                carOperationalCostPerHour: 30,
-                scissorsCrossoverCost: 5_000_000
+                baseTrackCost: 32_500,
+                baseStationCost: 7_000_000,
+                trainOperationalCostPerHour: 240,
+                carOperationalCostPerHour: 20,
+                scissorsCrossoverCost: 2_000_000,
+                stopTimeSeconds: 10,
+                maxLateralAcceleration: 2,
+                parallelTrackSpacing: 2.5,
+                trackClearance: 2,
+                minTurnRadius: 10,
+                minStationTurnRadius: 20,
+                maxSlopePercentage: 5.25,
             },
             compatibleTrackTypes: ['Tram'],
             allowAtGradeRoadCrossing: true,
@@ -80,6 +93,8 @@ async function initMod() {
                 color: '#ee2222'
             },
             elevationMultipliers: {
+                STANDARD_TUNNEL: 6,
+                DEEP_BORE: 12,
                 AT_GRADE: 0.25, 
                 ELEVATED: 2, //should be used at grade, so it is more expensive to build not at grade.
                 CUT_AND_COVER: 2
